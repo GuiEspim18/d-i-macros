@@ -55,7 +55,7 @@ Sub SelectFile(a As Integer)
         
         ' Encontra a última linha e coluna preenchida
         maxRow = ws.Cells(ws.Rows.Count, 1).End(xlUp).Row
-        maxCol = ws.Cells(1, ws.Columns.Count).End(xlToLeft).Column
+        maxCol = ws.Cells(1, ws.columns.Count).End(xlToLeft).Column
         
         ' Define o intervalo dos dados
         Set dataRange = ws.Range(ws.Cells(1, 1), ws.Cells(maxRow, maxCol))
@@ -90,4 +90,3 @@ End Sub
 Sub SelectPWD()
     SelectFile 1
 End Sub
-
