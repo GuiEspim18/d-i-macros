@@ -1,11 +1,11 @@
 Private size As Long
 Private names As Variant
-Private okrs As Variant
+Private okr As Variant
 Private columns As Variant
 Private months As Variant
 
-Public Sub RunOKRs()
-    okrs = DataNest(ThisWorkbook.Sheets("OKRs"))
+Public Sub OKRs()
+    okr = DataNest(ThisWorkbook.Sheets("OKRs"))
     size = GetNumberOfRows(okrs)
     columns = GetColumns(okrs)
     names = GetColumn(okrs, "Country")
