@@ -12,12 +12,11 @@ Sub Run()
     ' Pegando o valor do mês selecionado
     month = ws.Range("B1").Value
         
-    RunOKRs
+    OKRs
     
 End Sub
 
-Sub SelectFile(a As Integer)
-
+Private Function SelectFile() As Variant
     ' Declarando a variável selectedFile que vai guardar o valor em string do caminho do arquivo selecionado
     Dim selectedFile As Variant
     
@@ -46,7 +45,6 @@ Sub SelectFile(a As Integer)
     
     ' Verficando se o arquivo foi seleiconado
     If selectedFile <> False Then
-    
         ' Atribuindo ao wb o valor resultado que se obteve ao abrir o arquivo selecioado
         Set wb = Workbooks.Open(selectedFile)
         
@@ -63,30 +61,27 @@ Sub SelectFile(a As Integer)
         ' Armazena os dados em uma matriz
         data = dataRange.Value
         
-        ' Armazena os dados na variável correta com base no valor de 'a'
-        If a = 0 Then
-            bd = data
-        ElseIf a = 1 Then
-            pwd = data
-        End If
         
         ' Fecha o arquivo após leitura
         wb.Close SaveChanges:=False
         
         ' Imprimindo um aviso ao usuário de que se selecionou o arquivo corretamente
         MsgBox "Dados armazenados com sucesso."
+        
+        ' Armazena os dados na variável correta com base no valor de 'a'
+        SelectFile = data
     Else
         ' Imprimindo um aviso ao usuário de que não foi selecionado nenhum arquivo
         MsgBox "Nenhum arquivo foi selecionado."
     End If
-End Sub
+End Function
 
 
 Sub SelectBD()
-    SelectFile 0
+    bd = SelectFile
 End Sub
 
 
 Sub SelectPWD()
-    SelectFile 1
+    pwd = SelectFile
 End Sub
